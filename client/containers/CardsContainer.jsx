@@ -24,10 +24,10 @@ const uuid = require('uuid/v1');
 // }
 
 const CardsContainer = props => {
-  console.log('here are the props inside CardsContainer ', props);
+  // console.log('here are the props inside CardsContainer ', props);
 
   const createCard = item => {
-    console.log('in create card for: ', item.item_name);
+    // console.log('in create card for: ', item.item_name);
     return <Card key={uuid()} info={item} />;
   };
 

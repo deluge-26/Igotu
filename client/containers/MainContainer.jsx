@@ -11,6 +11,8 @@ import Cards from './CardsContainer.jsx';
 import types from '../constants/actionTypes';
 import * as actions from '../actions/actions';
 import ItemForm from '../components/ItemForm.jsx';
+import { Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
 
 // use this.props.cards to access state in our components below
 const mapStateToProps = store => ({
@@ -46,6 +48,14 @@ class MainContainer extends Component {
 
   // TODO: extract nav
   render() {
+    // console.log('thisprops', this.props)
+    const {cards: { items, fetching }} = this.props;
+    // const {items, fetching} = cards;
+    // function renderCards (props) {
+    //   console.log('props: ', props)
+    //   return (<Cards {...props} items={items} fetchFlag={fetching} />)
+    // }
+    // loading={this.props} 
     // console.log('here are ur props ',this.props.cards.items);
     return (
       <div>
@@ -58,14 +68,29 @@ class MainContainer extends Component {
             searchBoxChange={this.props.searchBoxChange}
           />
         </div>
+        <div>
+
+        </div>
         <div id="cardsdiv">
+          <Switch>
+            <Route
+              exact path='/'
+              render= {(props) => <Cards {...props} items={items} fetchFlag={fetching} loading={this.props} />}
+            ></Route>
+            <Route
+              path='/add'
+              component={ItemForm}
+            ></Route>
+
+
+          </Switch>
+{/* 
           <Cards
             items={this.props.cards.items}
             fetchFlag={this.props.cards.fetching}
             loading={this.props}
-          />
+          /> */}
         </div>
-        <ItemForm />
       </div>
     );
   }
