@@ -14,24 +14,25 @@ import ItemForm from '../components/ItemForm.jsx';
 
 // use this.props.cards to access state in our components below
 const mapStateToProps = store => ({
-  cards: store.cards
+  cards: store.cards,
   // search: store.search
 });
 
 // need to add all our action creators here
+// reference unit-12-testing MarketsContainer for a possible refactor
 const mapDispatchToProps = dispatch => ({
   fetchAllItems: () => {
     dispatch(actions.fetchItemsData());
   },
-  fetchSearchedItems: value => {
+  fetchSearchedItems: (value) => {
     dispatch(actions.fetchSearchedItems(value));
   },
-  searchBoxChange: value => {
+  searchBoxChange: (value) => {
     dispatch(actions.searchValueChange(value));
   },
-  fetchCategory: value => {
+  fetchCategory: (value) => {
     dispatch(actions.fetchCategoryItems(value));
-  }
+  },
 });
 
 class MainContainer extends Component {
@@ -43,10 +44,12 @@ class MainContainer extends Component {
     this.props.fetchAllItems();
   }
 
+  // TODO: extract nav
   render() {
     // console.log('here are ur props ',this.props.cards.items);
     return (
       <div>
+        {/* extract nav  */}
         <div id="navdiv">
           <Navigation
             fetchSearchedItems={this.props.fetchSearchedItems}
@@ -70,5 +73,5 @@ class MainContainer extends Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(MainContainer);

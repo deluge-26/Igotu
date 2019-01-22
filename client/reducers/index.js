@@ -4,7 +4,7 @@ import cardsReducer from './cardsReducer';
 import searchReducer from './searchReducer';
 
 const reducers = combineReducers({
-  cards: cardsReducer
+  cards: cardsReducer,
   // search: searchReducer
 });
 

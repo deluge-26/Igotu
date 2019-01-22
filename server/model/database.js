@@ -1,3 +1,4 @@
+// TODO: update to pg-promise instead of pg
 const pg = require('pg');
 
 const db = {};
@@ -7,5 +8,6 @@ pg.connect(uri, (err, db_) => {
   if (err) throw new Error(err);
   db.conn = db_;
 });
+
 
 module.exports = db;

@@ -7,6 +7,7 @@ import store from './store';
 import styles from './styles/application.less'; 
 
 render(
+  // provider makes the redux store available to components
   <Provider store={store}>
     <App />
   </Provider>,
