@@ -5,7 +5,7 @@ import reducers from './reducers/index';
 
 const middleware = compose(
   applyMiddleware(thunk),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
+  window.devToolsExtension ? window.devToolsExtension() : f => f,
 );
 
 const store = createStore(reducers, middleware);

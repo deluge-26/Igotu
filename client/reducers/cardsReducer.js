@@ -5,14 +5,15 @@ const initialState = {
   items: [],
   user: {
     name: '',
-    email: ''
+    email: '',
+    id: null, // expect type number
   },
   cards: [],
   modalStatus: false,
   loggedIn: false,
   fetching: false,
   fetched: false,
-  searchBoxValue: 'search'
+  searchBoxValue: 'search',
 };
 
 const cardsReducer = (state = initialState, action) => {
@@ -20,29 +21,29 @@ const cardsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.LOGIN:
       return {
-        ...state
+        ...state,
       };
     case types.SEARCH:
       return {
-        ...state
+        ...state,
       };
     case types.GET_ALL_ITEMS_START:
       return {
         ...state,
         fetching: true,
-        fetched: false
+        fetched: false,
       };
     case types.GET_ALL_ITEMS:
       return {
         ...state,
         items: action.payload,
         fetching: false,
-        fetched: true
+        fetched: true,
       };
     case types.SEARCH_BOX_CHANGE:
       return {
         ...state,
-        searchBoxValue: action.payload
+        searchBoxValue: action.payload,
       };
 
     default:

@@ -1,5 +1,5 @@
 import React from 'react';
-
+/* eslint-disable arrow-parens, */
 const Search = props => {
   function handleChange(e) {
     console.log(e.target.value);

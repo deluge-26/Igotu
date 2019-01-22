@@ -1,16 +1,18 @@
+
 const pg = require('pg'); // postgres library
+
 
 const itemController = {};
 
+// expects item ID => returns one object (in an array?)
 itemController.getOneItem = (req, res, next) => {
-  const uri =
-  'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
+  const uri = 'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
   const pool = new pg.Pool({
-    connectionString: uri
+    connectionString: uri,
   });
   const query = {
     text: 'SELECT * FROM items WHERE id = $1',
-    values: [req.params.id]
+    values: [req.params.id],
   };
   pool.query(query.text, query.values, (err, items) => {
     console.log('These are the items: ', items);
@@ -22,11 +24,13 @@ itemController.getOneItem = (req, res, next) => {
   });
 };
 
+// adds an item to database , returns item upon saving
+// add userId field for the seller that added it.
+// userId could be on body or on cookie
 itemController.addItem = (req, res, next) => {
-  const uri =
-    'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
+  const uri = 'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
   const pool = new pg.Pool({
-    connectionString: uri
+    connectionString: uri,
   });
   const query = {
     text:
@@ -36,8 +40,8 @@ itemController.addItem = (req, res, next) => {
       req.body.price,
       req.body.item_name,
       req.body.item_details,
-      req.body.created_at
-    ]
+      req.body.created_at,
+    ],
   };
   pool.query(query.text, query.values, (err, user) => {
     if (err) {
@@ -49,14 +53,14 @@ itemController.addItem = (req, res, next) => {
   });
 };
 
+// populates home page => returns an array
 itemController.getAllItems = (req, res, next) => {
-  const uri =
-    'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
+  const uri = 'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
   const pool = new pg.Pool({
-    connectionString: uri
+    connectionString: uri,
   });
   const query = {
-    text: 'SELECT * FROM items'
+    text: 'SELECT * FROM items',
   };
   pool.query(query.text, (err, items) => {
     if (err) {
@@ -69,15 +73,17 @@ itemController.getAllItems = (req, res, next) => {
   });
 };
 
+// TODO: loosen up db query to make more flexible searches
+// employ an npm library to help?
+// make the query less strict?
 itemController.searchItem = (req, res, next) => {
-  const uri =
-    'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
+  const uri = 'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
   const pool = new pg.Pool({
-    connectionString: uri
+    connectionString: uri,
   });
   const query = {
     text: 'SELECT * FROM items WHERE item_name = $1',
-    values: [req.params.item_name]
+    values: [req.params.item_name],
   };
   pool.query(query.text, query.values, (err, items) => {
     if (err) {
@@ -88,15 +94,15 @@ itemController.searchItem = (req, res, next) => {
   });
 };
 
+// filters the items from db by category
 itemController.searchCategory = (req, res, next) => {
-  const uri =
-    'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
+  const uri = 'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
   const pool = new pg.Pool({
-    connectionString: uri
+    connectionString: uri,
   });
   const query = {
     text: 'SELECT * FROM items WHERE category = $1',
-    values: [req.params.category]
+    values: [req.params.category],
   };
   pool.query(query.text, query.values, (err, items) => {
     if (err) {
