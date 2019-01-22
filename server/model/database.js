@@ -2,9 +2,9 @@
 const pg = require('pg');
 
 const db = {};
-const uri = 'igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com/igotu';
+const URI = process.env.DB_URI;
 
-pg.connect(uri, (err, db_) => {
+pg.connect(URI, (err, db_) => {
   if (err) throw new Error(err);
   db.conn = db_;
 });
