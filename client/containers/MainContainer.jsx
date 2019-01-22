@@ -80,9 +80,7 @@ class MainContainer extends Component {
               path='/add'
               component={ItemForm}
               />
-            <Route>
-              path=''
-            />
+
         </Switch>
         </div>
       </div>
