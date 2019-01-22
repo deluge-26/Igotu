@@ -3,7 +3,7 @@
 import React from 'react';
 import Search from '../components/SearchBox.jsx';
 import SubNavigation from './SubNavContainer.jsx'
-import { Switch, Route, withRouter, Link } from 'react-router-dom';
+import { Switch, Route, withRouter, Link, NavLink } from 'react-router-dom';
 
 // import * as actions from '../constants/actionTypes';
 
@@ -31,7 +31,9 @@ const Navigation = props => (
       </div>
       <div className="nav-right">
         <div className="nav-item has-sub toggle-hover" id="dropdown">
-          <a><Link to="/add">Create Event</Link></a>
+          <a><NavLink to='/add'>Add an Item</NavLink></a>
+          <a><NavLink to='/categories'>Search By Category</NavLink></a>
+          <a><NavLink to='/search'>Search </NavLink> </a>
           <a className="nav-dropdown-link">Categories</a>
           <ul className="dropdown-menu dropdown-animated" role="menu">
             <li role="menu-item">

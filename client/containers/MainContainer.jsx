@@ -58,6 +58,8 @@ class MainContainer extends Component {
     // loading={this.props} 
     // console.log('here are ur props ',this.props.cards.items);
     return (
+      <Router>
+
       <div>
         {/* extract nav  */}
         <div id="navdiv">
@@ -66,32 +68,25 @@ class MainContainer extends Component {
             fetchCategory={this.props.fetchCategory}
             searchValue={this.props.cards.searchBoxValue}
             searchBoxChange={this.props.searchBoxChange}
-          />
-        </div>
-        <div>
-
+            />
         </div>
         <div id="cardsdiv">
-          <Switch>
+        <Switch>
             <Route
               exact path='/'
               render= {(props) => <Cards {...props} items={items} fetchFlag={fetching} loading={this.props} />}
-            ></Route>
+              />
             <Route
               path='/add'
               component={ItemForm}
-            ></Route>
-
-
-          </Switch>
-{/* 
-          <Cards
-            items={this.props.cards.items}
-            fetchFlag={this.props.cards.fetching}
-            loading={this.props}
-          /> */}
+              />
+            <Route>
+              path=''
+            />
+        </Switch>
         </div>
       </div>
+    </Router>
     );
   }
 }
