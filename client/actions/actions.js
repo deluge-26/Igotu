@@ -22,7 +22,7 @@ export const searchValueChange = value => ({
 export const fetchItemsData = () => dispatch => {
   dispatch(fetchItemsStart());
 
-  fetch('http://localhost:3000/allItems')
+  fetch('http://localhost:3001/allItems')
     .then(response => response.json())
     .then(data => {
       console.log('we got the items');
@@ -34,7 +34,7 @@ export const fetchItemsData = () => dispatch => {
 export const fetchSearchedItems = search => dispatch => {
   dispatch(fetchItemsStart());
 
-  fetch(`http://localhost:3000/search/${search}`)
+  fetch(`http://localhost:3001/search/${search}`)
     .then(response => response.json())
     .then(data => {
       console.log('we got the searched items');
@@ -46,7 +46,7 @@ export const fetchSearchedItems = search => dispatch => {
 export const fetchCategoryItems = category => dispatch => {
   dispatch(fetchItemsStart());
 
-  fetch(`http://localhost:3000/category/${category}`)
+  fetch(`http://localhost:3001/category/${category}`)
     .then(response => response.json())
     .then(data => {
       console.log('we got the category items');

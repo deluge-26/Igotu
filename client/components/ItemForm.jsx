@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+// import { Switch } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Switch, Route, withRouter, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 const ItemForm = (props) => {
   
@@ -21,4 +26,5 @@ const ItemForm = (props) => {
 
 }
 
-export default ItemForm;
+//export default ItemForm;
+export default withRouter(connect(null, null)(ItemForm));

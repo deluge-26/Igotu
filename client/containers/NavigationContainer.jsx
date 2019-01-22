@@ -3,7 +3,11 @@
 import React from 'react';
 import Search from '../components/SearchBox.jsx';
 import SubNavigation from './SubNavContainer.jsx'
+import { Switch, Route, withRouter, Link } from 'react-router-dom';
+
 // import * as actions from '../constants/actionTypes';
+
+//*React Router: on line 32 we have link to event
 
 const Navigation = props => (
   <div id="nav-bar" className="header header-fixed unselectable header-animated">
@@ -27,6 +31,7 @@ const Navigation = props => (
       </div>
       <div className="nav-right">
         <div className="nav-item has-sub toggle-hover" id="dropdown">
+          <a><Link to="/add">Create Event</Link></a>
           <a className="nav-dropdown-link">Categories</a>
           <ul className="dropdown-menu dropdown-animated" role="menu">
             <li role="menu-item">
