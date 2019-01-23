@@ -1,19 +1,19 @@
 {
   "name": "igotu",
   "version": "0.1.0",
-  "description": "",
+  "description": "Iteration Project",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "start:dev": "webpack-dev-server --mode development --open",
     "server": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iAmHarmon/Igotu.git"
   },
-  "author": "Team Wunderpus Photogenicus",
+  "author": "Team Deluge",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/iAmHarmon/Igotu/issues"
@@ -46,10 +46,14 @@
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.0",
     "html-webpack-plugin": "^3.2.0",
+    "i": "^0.3.6",
+    "jest": "^23.6.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "nodemon": "^1.18.9",
+    "npm": "^6.6.0",
     "style-loader": "^0.23.1",
+    "supertest": "^3.4.2",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
