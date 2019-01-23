@@ -1,7 +1,13 @@
 import * as types from '../constants/actionTypes';
 
+
+export const createdItem = item => ({
+  type: types.CREATED_ITEM,
+  payload: item,  
+})
+
 export const fetchItemsStart = () => ({
-  type: types.GET_ALL_ITEMS_START
+  type: types.GET_ALL_ITEMS_START,
 });
 
 export const fetchedItems = resp => ({
@@ -18,6 +24,28 @@ export const searchValueChange = value => ({
   type: types.SEARCH_BOX_CHANGE,
   payload: value
 });
+
+export const createItem = (item) => dispatch => {
+  console.log("button pushed");
+  console.log("item: ", item);
+
+
+  const formBody = Object.keys(item).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(item[key])).join('&');
+
+  console.log(formBody);
+  fetch('http://localhost:3001/addItem', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    },
+    body: formBody
+  }).then(response => response.json())
+    .then(data => {
+      console.log('This item was stored in the database: ', data);
+      // dispatch(fetchedItems(data));
+    })
+    .catch(() => dispatch(fetchError));
+};
 
 export const fetchItemsData = () => dispatch => {
   dispatch(fetchItemsStart());
