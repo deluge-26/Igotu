@@ -45,11 +45,6 @@ const cardsReducer = (state = initialState, action) => {
         ...state,
         searchBoxValue: action.payload,
       };
-      // case types.ADD_ITEM:
-      // return {
-      //   ...state,
-      //   cards: state.cards.concat(action.payload),
-      // };
 
     default:
       return state;
