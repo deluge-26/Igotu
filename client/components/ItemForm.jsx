@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 // import { Switch } from 'react-router-dom';
 import { Router } from 'react-router-dom';
+<<<<<<< HEAD
 import { Switch, Route, withRouter, Link, NavLink, Redirect } from 'react-router-dom';
+=======
+import { Switch, Route, withRouter, Link, browswerHistory, NavLink } from 'react-router-dom';
+>>>>>>> c3e3a8e3ccf596dd502306a691e654ce329bd218
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js'
+const moment = require ('moment');
 
 const mapStateToProps = store => ({
   items: store.items,
@@ -47,8 +52,9 @@ class ItemForm extends Component {
       price: this.state.price,
       photo: this.state.image,
       user_id: 1,
-      created_at: '2015-12-22 10:15:33',
+      created_at: moment().format()
     };
+
     this.props.createItem(newItem);
     this.setState({ fireRedirect: true })
 
@@ -77,9 +83,16 @@ class ItemForm extends Component {
           <input className="item-price" id="price" onChange={this.handleChange} type="number"></input>
           Image Url<br></br>
           <input className="item-image" id="image" onChange={this.handleChange} type="url"></input>
+<<<<<<< HEAD
           <button className="addItemButton" onClick={this.createItem}>Add Item</button> {fireRedirect && (
           <Redirect to={'/Submitted'}/>
         )}
+=======
+          <NavLink to='/' >
+          <button className="addItemButton" onClick={this.createItem}>Add Item</button>
+
+          </NavLink>
+>>>>>>> c3e3a8e3ccf596dd502306a691e654ce329bd218
       </div>
     )
 

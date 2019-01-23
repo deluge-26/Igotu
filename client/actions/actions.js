@@ -1,11 +1,6 @@
 import * as types from '../constants/actionTypes';
 
 
-// export const createdItem = item => ({
-//   type: types.CREATED_ITEM,
-//   payload: item,  
-// })
-
 export const fetchItemsStart = () => ({
   type: types.GET_ALL_ITEMS_START,
 });
@@ -42,7 +37,9 @@ export const createItem = (item) => dispatch => {
   }).then(response => response.json())
     .then(data => {
       console.log('This item was stored in the database: ', data);
-      dispatch(fetchedItemsData(data));
+      console.log(dispatch(createdItem(data)));
+      dispatch(fetchItemsStart());
+
     })
     .catch(() => dispatch(fetchError));
 };

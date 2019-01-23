@@ -14,7 +14,7 @@ class SubmittedPage extends Component {
       return (
           <div className='submittedItem'>
          <h3>Here's your item:</h3>
-
+        
         </div>
       )
   
