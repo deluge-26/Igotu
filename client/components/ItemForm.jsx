@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Switch } from 'react-router-dom';
 import { Router } from 'react-router-dom';
-import { Switch, Route, withRouter, Link } from 'react-router-dom';
+import { Switch, Route, withRouter, Link, NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js'
 
@@ -24,11 +24,11 @@ class ItemForm extends Component {
       description: '',
       price: '',
       image: '',
+      fireRedirect: false,
     }
     this.createItem = this.createItem.bind(this);
     this.handleChange = this.handleChange.bind(this)
   }
-  //TODO: convert new state to = spread operator of state, test
   handleChange(e) {
     console.log("e.target: ", e.target);
 
@@ -50,10 +50,13 @@ class ItemForm extends Component {
       created_at: '2015-12-22 10:15:33',
     };
     this.props.createItem(newItem);
+    this.setState({ fireRedirect: true })
+
   }
 
-  //TODO does category need an id?
   render() {
+    const { from } = this.props.location.state || '/'
+    const { fireRedirect } = this.state
     console.log("this.state: ", this.state);
     return (
       <div className="addItemForm">
@@ -61,7 +64,7 @@ class ItemForm extends Component {
           Item Name<br></br>
           <input className="item-name" id="itemName" onChange={this.handleChange} type="text"></input>
           Category<br></br>
-          <select id='category' value="categoryDropDown" onChange={this.handleChange}>
+          <select id='category' value={this.state.category} onChange={this.handleChange}>
             <option value="entertainment">Entertainment</option>
             <option value="household">Household</option>
             <option value="outdoor">Outdoor</option>
@@ -74,7 +77,9 @@ class ItemForm extends Component {
           <input className="item-price" id="price" onChange={this.handleChange} type="number"></input>
           Image Url<br></br>
           <input className="item-image" id="image" onChange={this.handleChange} type="url"></input>
-          <button className="addItemButton" onClick={this.createItem}>Add Item</button>
+          <button className="addItemButton" onClick={this.createItem}>Add Item</button> {fireRedirect && (
+          <Redirect to={'/Submitted'}/>
+        )}
       </div>
     )
 
