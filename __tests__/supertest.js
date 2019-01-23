@@ -22,13 +22,15 @@ describe('Route integration', () => {
   });
 
   // TODO: split expects into multiple assertions
+  // query that inserts something
+  // query that checks the inserted value
   describe('/item/:id', () => {
     describe('GET', () => {
       it('Should get the first item ID in the items array', () => {
         expect.assertions(3);
         return request(server).get('/item/1').then(res => {
           //expect('Content-Type', /application\/json/)
-          console.log('res.body: ', res.body);
+          // console.log('res.body: ', res.body);
           // expect(200);
           const id = res.body[0].id;
           expect(id).toBeDefined();
@@ -63,7 +65,7 @@ describe('Route integration', () => {
         expect.assertions(2);
         return request(server).get('/category/entertainment').then(res => {
           //expect('Content-Type', /application\/json/)
-          console.log('res.body: ', res.body);
+          // console.log('res.body: ', res.body);
           // expect(200);
           const category = res.body[0].category;
           expect(category).toBeDefined();
@@ -74,7 +76,56 @@ describe('Route integration', () => {
   });
 
   // TODO: create GET test for allItems 
-  // TODO: create POST test for addItem 
+  describe('/allItems', () => {
+    describe('GET', () => {
+      it('Should get all items', () => {
+        expect.assertions(2);
+        return request(server).get('/allItems').then(res => {
+          const items = res.body;
+          expect(items).toBeDefined();
+          expect(items).toBeInstanceOf(Array);
+          // obscenely hard-coded
+          // expect(items).toHaveLength(12);
+        })
+      });
+    });
+  });
+
+  // const mockCreateItem = (item) => {
+  //   const formBody = Object.keys(item).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(item[key])).join('&');
+
+  //   console.log(formBody);
+  //   fetch('http://localhost:3001/addItem', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  //     },
+  //     body: formBody
+  //   }).then(response => response.json())
+  //     .then(data => {
+  //       console.log('This item was stored in the database: ', data);
+  //       // dispatch(fetchedItems(data));
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
+  // describe('/addItem', () => {
+  //   describe('POST', () => {
+  //     it('Should add item to db', () => {
+  //       // expect.assertions(1);
+
+  //       return request(server).post('/addItem').then(res => {
+  //        //expect(200)
+  //       const mockItem = {
+
+  //       }
+  //       mockCreateItem()
+  //         // const item = res.body;
+  //         // expect(items).toBeDefined();
+  //       }).catch(err => console.log(err))
+  //     });
+  //   });
+  // });
 
     // describe('Test the item ID route', () => {
     //   test('It should get the item ID', () => {
