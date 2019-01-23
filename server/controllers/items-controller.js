@@ -29,7 +29,6 @@ itemController.getOneItem = (req, res, next) => {
 // add userId field for the seller that added it.
 // userId could be on body or on cookie
 itemController.addItem = (req, res, next) => {
-  console.log("req.body: ", req.body);
   // const URI = 'postgresql://igotu:eyegotchu@igotu-master.cu4n5g8jahnw.us-west-2.rds.amazonaws.com:5432/igotu';
   const pool = new pg.Pool({
     connectionString: URI,
