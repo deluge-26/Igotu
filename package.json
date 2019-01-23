@@ -29,6 +29,8 @@
     "express": "^4.16.4",
     "express-fileupload": "^1.1.1-alpha.1",
     "history": "^4.7.2",
+    "kleur": "^3.0.1",
+    "moment": "^2.24.0",
     "pg": "^7.8.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
