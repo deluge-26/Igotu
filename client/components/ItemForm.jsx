@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 // import { Switch } from 'react-router-dom';
 import { Router } from 'react-router-dom';
-<<<<<<< HEAD
-import { Switch, Route, withRouter, Link, NavLink, Redirect } from 'react-router-dom';
-=======
-import { Switch, Route, withRouter, Link, browswerHistory, NavLink } from 'react-router-dom';
->>>>>>> c3e3a8e3ccf596dd502306a691e654ce329bd218
+import { Switch, Route, withRouter, Link, browswerHistory, NavLink, Redirect, Prompt } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js'
 const moment = require ('moment');
@@ -61,7 +57,6 @@ class ItemForm extends Component {
   }
 
   render() {
-    const { from } = this.props.location.state || '/'
     const { fireRedirect } = this.state
     console.log("this.state: ", this.state);
     return (
@@ -83,16 +78,8 @@ class ItemForm extends Component {
           <input className="item-price" id="price" onChange={this.handleChange} type="number"></input>
           Image Url<br></br>
           <input className="item-image" id="image" onChange={this.handleChange} type="url"></input>
-<<<<<<< HEAD
-          <button className="addItemButton" onClick={this.createItem}>Add Item</button> {fireRedirect && (
-          <Redirect to={'/Submitted'}/>
-        )}
-=======
-          <NavLink to='/' >
-          <button className="addItemButton" onClick={this.createItem}>Add Item</button>
-
-          </NavLink>
->>>>>>> c3e3a8e3ccf596dd502306a691e654ce329bd218
+          <button className="addItemButton" onClick={this.createItem}>Add Item</button> 
+          {fireRedirect && (<Redirect to={'/'}/>)}
       </div>
     )
 

@@ -11,7 +11,6 @@ import Cards from './CardsContainer.jsx';
 import types from '../constants/actionTypes';
 import * as actions from '../actions/actions';
 import ItemForm from '../components/ItemForm.jsx';
-import SubmittedPage from '../components/SubmittedPage.jsx'
 import { Switch } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
@@ -82,10 +81,6 @@ class MainContainer extends Component {
               path='/add'
               component={ItemForm}
               />
-            <Route
-              path='/submitted'
-              component={SubmittedPage}
-            />
         </Switch>
         </div>
       </div>
