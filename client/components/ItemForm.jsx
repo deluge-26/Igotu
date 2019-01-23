@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Switch } from 'react-router-dom';
 import { Router } from 'react-router-dom';
-import { Switch, Route, withRouter, Link, browswerHistory, NavLink } from 'react-router-dom';
+import { Switch, Route, withRouter, Link, browswerHistory, NavLink, Redirect, Prompt } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js'
 const moment = require ('moment');
@@ -25,11 +25,11 @@ class ItemForm extends Component {
       description: '',
       price: '',
       image: '',
+      fireRedirect: false,
     }
     this.createItem = this.createItem.bind(this);
     this.handleChange = this.handleChange.bind(this)
   }
-  //TODO: convert new state to = spread operator of state, test
   handleChange(e) {
     console.log("e.target: ", e.target);
 
@@ -52,10 +52,12 @@ class ItemForm extends Component {
     };
 
     this.props.createItem(newItem);
+    this.setState({ fireRedirect: true })
+
   }
 
-  //TODO does category need an id?
   render() {
+    const { fireRedirect } = this.state
     console.log("this.state: ", this.state);
     return (
       <div className="addItemForm">
@@ -63,7 +65,7 @@ class ItemForm extends Component {
           Item Name<br></br>
           <input className="item-name" id="itemName" onChange={this.handleChange} type="text"></input>
           Category<br></br>
-          <select id='category' value="categoryDropDown" onChange={this.handleChange}>
+          <select id='category' value={this.state.category} onChange={this.handleChange}>
             <option value="entertainment">Entertainment</option>
             <option value="household">Household</option>
             <option value="outdoor">Outdoor</option>
@@ -76,10 +78,8 @@ class ItemForm extends Component {
           <input className="item-price" id="price" onChange={this.handleChange} type="number"></input>
           Image Url<br></br>
           <input className="item-image" id="image" onChange={this.handleChange} type="url"></input>
-          <NavLink to='/' >
-          <button className="addItemButton" onClick={this.createItem}>Add Item</button>
-
-          </NavLink>
+          <button className="addItemButton" onClick={this.createItem}>Add Item</button> 
+          {fireRedirect && (<Redirect to={'/'}/>)}
       </div>
     )
 
