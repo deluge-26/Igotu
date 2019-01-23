@@ -35,19 +35,24 @@ itemController.addItem = (req, res, next) => {
   });
   console.log(`
   user_id: ${req.body.user_id}\n
-  photo: ${req.body.photo}\n
+  photo: ${res.locals.photo}\n
   price: ${req.body.price}\n
   item_name: ${req.body.item_name}\n
   item_details: ${req.body.item_details}\n
   category: ${req.body.category}\n
   created_at: ${req.body.created_at}\n
   `);
+
+  // const url = res.locals.imgURL ? res.locals.imgURL : req.body.photo;
+  // ?? Should ^^ this ^^ be handled here or on the front end in the form logic?
+  // * for example: client sends photo to server as url -OR- image file
+
   const query = {
     text:
       'INSERT INTO items(user_id, photo, price, item_name, item_details, category, created_at) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
     values: [
       req.body.user_id,
-      req.body.photo,
+      res.locals.photo,
       req.body.price,
       req.body.item_name,
       req.body.item_details,
