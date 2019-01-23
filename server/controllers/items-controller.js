@@ -1,5 +1,6 @@
 
-const pg = require('pg'); // postgres library
+const pg = require('pg');
+// postgres library
 const URI = process.env.DB_URI;
 
 const itemController = {};
@@ -32,10 +33,19 @@ itemController.addItem = (req, res, next) => {
   const pool = new pg.Pool({
     connectionString: URI,
   });
+  console.log(`
+  user_id: ${req.body.user_id}\n
+  photo: ${req.body.photo}\n
+  price: ${req.body.price}\n
+  item_name: ${req.body.item_name}\n
+  item_details: ${req.body.item_details}\n
+  created_at: ${req.body.created_at}\n
+  `);
   const query = {
     text:
-      'INSERT INTO items(photo, price, item_name, item_details, created_at) VALUES($1, $2, $3, $4, $5) RETURNING *',
+      'INSERT INTO items(user_id, photo, price, item_name, item_details, created_at) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
     values: [
+      req.body.user_id,
       req.body.photo,
       req.body.price,
       req.body.item_name,

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/iAmHarmon/Igotu#readme",
   "dependencies": {
+    "aws-sdk": "^2.392.0",
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
     "cirrus-ui": "^0.5.4",
