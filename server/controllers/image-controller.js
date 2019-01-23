@@ -1,23 +1,29 @@
 const fs = require('fs');
-const path = require('path');
 const s3 = require('../model/aws-upload');
 
 const imageController = {};
 
 imageController.upload = (req, res, next) => {
-  console.log('uploaing image!');
+  res.locals.photo = req.body.photo;
+  // check if a file was sent -> yes, do work -OR- no, next();
+  console.log(`is there a file to upload? : ${req.files !== null}`);
+  if (req.files === null) return next();
 
-  // TODO: check if a file was sent -> yes, do work -OR- no, next();
-
-  // const file = `${__dirname}/../../Jae.png`;
   const { file } = req.files;
-  console.log('is buffer?', Buffer.isBuffer(file.data));
-  const filePath = `${__dirname}/../temp/${file.name}`;
 
+  // grab the png or jpeg off the end of the filename
+  const extension = file.name.split('.').pop();
+  console.log(`extension: ${extension}`);
+  const tempFilePath = `${__dirname}/cache/image.${extension}`;
 
-  file.mv(filePath, (err) => {
-    if (err) return console.log(err);
-    console.log('saved file to temp!');
+  // saves image to temp folder as tempImage.(extension)
+
+  const saveTempFile = new Promise((resolve, reject) => {
+    file.mv(tempFilePath, (err) => {
+      if (err) return reject(err);
+      console.log('saved file');
+      return resolve();
+    });
   });
 
 
@@ -25,7 +31,7 @@ imageController.upload = (req, res, next) => {
     // which bucket in S3 to store file in
     Bucket: process.env.AWSS3Bucket,
     // the image data
-    Body: fs.createReadStream(filePath),
+    Body: fs.createReadStream(tempFilePath),
     // figure out type vs disposition -> type is stored format?
     ContentType: 'image/jpeg',
     // the new key for the image -> helps generate unique URL
@@ -36,12 +42,21 @@ imageController.upload = (req, res, next) => {
     ACL: 'public-read',
   };
 
-  s3.upload(params)
-    .promise()
+  saveTempFile.then(() => s3.upload(params).promise())
     .then((data) => {
+      // store returned URL on res.locals
       console.log(`uploaded photo, got back data: ${data.Location}`);
-      res.locals.imgURL = data.Location;
-      // TODO: delete the file from temp folder
+      res.locals.photo = data.Location;
+      // next();
+    })
+    .then(() => {
+      console.log('removing file');
+      fs.unlinkSync(tempFilePath, () => {
+        console.log('removed file');
+      });
+    })
+    .then(() => {
+      console.log('moving on');
       next();
     })
     .catch((err) => {
