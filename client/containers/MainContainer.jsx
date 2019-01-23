@@ -13,6 +13,7 @@ import * as actions from '../actions/actions';
 import ItemForm from '../components/ItemForm.jsx';
 import { Switch } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 // use this.props.cards to access state in our components below
 const mapStateToProps = store => ({
@@ -58,7 +59,7 @@ class MainContainer extends Component {
     // loading={this.props} 
     // console.log('here are ur props ',this.props.cards.items);
     return (
-      <Router>
+      <Router history={history}>
 
       <div>
         {/* extract nav  */}
@@ -80,9 +81,6 @@ class MainContainer extends Component {
               path='/add'
               component={ItemForm}
               />
-            <Route
-              path=''
-            />
         </Switch>
         </div>
       </div>
