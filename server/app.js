@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const userController = require('./controllers/users-controller');
 const itemsController = require('./controllers/items-controller');
+const imageController = require('./controllers/image-controller');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -40,7 +41,7 @@ app.post('/addUser', userController.addUser, (req, res, err) => {
   res.status(200).json(res.locals.data);
 });
 
-app.post('/addItem', itemsController.addItem, (req, res, err) => {
+app.post('/addItem', imageController.upload,itemsController.addItem, (req, res, err) => {
   res.status(200).json(res.locals.data);
 });
 
