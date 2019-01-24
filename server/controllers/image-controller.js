@@ -10,40 +10,6 @@ imageController.upload = (req, res, next) => {
   if (req.file === null) return next();
 
 
-  // // grab the png or jpeg off the end of the filename
-  // const extension = file.name.split('.').pop();
-  // console.log(`extension: ${extension}`);
-  // const tempFilePath = `${__dirname}/cache/image.${extension}`;
-
-  // // saves image to temp folder as tempImage.(extension)
-
-  // const saveTempFile = new Promise((resolve, reject) => {
-  //   file.mv(tempFilePath, (err) => {
-  //     if (err) return reject(err);
-  //     console.log('saved file');
-  //     return resolve();
-  //   });
-  // });
-
-
-  // saveTempFile.then(() => {
-  //   const params = {
-  //     // which bucket in S3 to store file in
-  //     Bucket: process.env.AWSS3Bucket,
-  //     // the image data
-  //     Body: fs.createReadStream(tempFilePath),
-  //     // figure out type vs disposition -> type is stored format?
-  //     ContentType: 'image/jpeg',
-  //     // the new key for the image -> helps generate unique URL
-  //     Key: `images/${Date.now()}_${file.name}`,
-  //     // figure out type vs disposition -> disposition is incoming format?
-  //     ContentDispositon: 'inline; filename=filename.png',
-  //     // access control -> everyone can read
-  //     ACL: 'public-read',
-  //   };
-  //   s3.upload(params).promise();
-  // })
-
   const tempFilePath = req.file.path;
 
   const params = {
@@ -83,14 +49,6 @@ imageController.upload = (req, res, next) => {
       console.log(`WHOOPS! ${err}`);
       next();
     });
-
-  // s3.upload(params, (err, data) => {
-  //   if (err) console.log(`WHOOPS! ${err}`);
-
-  //   if (data) console.log(`got data: ${data}`);
-
-  //   next();
-  // });
 };
 
 
