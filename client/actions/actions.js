@@ -36,6 +36,7 @@ export const createItem = item => (dispatch) => {
     method: 'POST',
     headers: {
       'Content-Type': 'multipart/form-data',
+      Boundary: 'XXXXX',
     },
     body: formBody,
   }).then(response => response.json())

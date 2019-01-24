@@ -24,7 +24,7 @@ class ItemForm extends Component {
     super(props);
     this.state = {
       itemName: '',
-      category: '',
+      category: 'entertainment',
       description: '',
       price: '',
       image: '',

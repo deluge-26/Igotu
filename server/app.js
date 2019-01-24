@@ -1,15 +1,19 @@
 const path = require('path');
 const express = require('express');
-
-const app = express();
+const multer = require('multer');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const fileUpload = require('express-fileupload');
+// const fileUpload = require('express-fileupload');
 const userController = require('./controllers/users-controller');
 const itemsController = require('./controllers/items-controller');
 const imageController = require('./controllers/image-controller');
 
-app.use(fileUpload());
+
+const upload = multer({ dest: 'temp/' });
+const app = express();
+
+
+// app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
@@ -44,7 +48,7 @@ app.post('/addUser', userController.addUser, (req, res, err) => {
   res.status(200).json(res.locals.data);
 });
 
-app.post('/addItem', imageController.upload, itemsController.addItem, (req, res, err) => {
+app.post('/addItem', upload.single('file'), imageController.upload, itemsController.addItem, (req, res, err) => {
   res.status(200).json(res.locals.data);
 });
 
