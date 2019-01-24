@@ -25,8 +25,6 @@ export const createItem = item => (dispatch) => {
   console.log('item: ', item);
 
 
-  // const formBody = Object.keys(item).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(item[key])).join('&');
-
   const formBody = new FormData();
   Object.keys(item).map(key => formBody.append(key, item[key]));
 
