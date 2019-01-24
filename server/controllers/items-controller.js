@@ -99,10 +99,10 @@ itemController.searchItem = (req, res, next) => {
     connectionString: URI,
   });
   const query = {
-    text: 'SELECT * FROM items WHERE item_name = $1',
-    values: [req.params.item_name],
+    text: `SELECT * FROM items WHERE item_name iLIKE '%${req.params.item_name}%' OR item_details iLike '%${req.params.item_name}%'`,
   };
-  pool.query(query.text, query.values, (err, items) => {
+  console.log(query);
+  pool.query(query.text, (err, items) => {
     if (err) {
     } else {
       res.locals.search = items.rows;

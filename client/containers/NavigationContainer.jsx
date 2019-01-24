@@ -32,8 +32,6 @@ const Navigation = props => (
       <div className="nav-right">
         <div className="nav-item has-sub toggle-hover" id="dropdown">
           <a><NavLink to='/add'>Add an Item</NavLink></a>
-          <a><NavLink to='/categories'>Search By Category</NavLink></a>
-          <a><NavLink to='/search'>Search </NavLink> </a>
           <a className="nav-dropdown-link">Categories</a>
           <ul className="dropdown-menu dropdown-animated" role="menu">
             <li role="menu-item">
@@ -47,7 +45,10 @@ const Navigation = props => (
                 props.fetchCategory('outdoor');
               }}
             >
+            <NavLink to='/category/Outdoor'> 
+
               <center>Outdoor</center>
+            </NavLink>
             </li>
             <li
               role="menu-item"
@@ -55,7 +56,9 @@ const Navigation = props => (
                 props.fetchCategory('household');
               }}
             >
+            <NavLink to='/category/Household'>
               <center>Household</center>
+            </NavLink>
             </li>
             <li
               role="menu-item"
@@ -63,7 +66,9 @@ const Navigation = props => (
                 props.fetchCategory('entertainment');
               }}
             >
+            <NavLink to='/category/Entertainment'>
               <center>Entertainment</center>
+            </NavLink>
             </li>
             <li
               role="menu-item"
@@ -71,7 +76,9 @@ const Navigation = props => (
                 props.fetchCategory('toys');
               }}
             >
+            <NavLink to ='/category/Toys'>
               <center>Toys</center>
+            </NavLink>
             </li>
           </ul>
         </div>
