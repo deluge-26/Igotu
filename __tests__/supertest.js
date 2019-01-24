@@ -1,6 +1,10 @@
+// import itemController from '../server/controllers/items-controller';
 const request = require('supertest');
 const server = 'http://localhost:3001';
 const app = require('../server/app');
+// const moment = require('moment');
+
+// jest.mock(itemController);
 
 // TODO: clean up code in this file
 // TODO: refactor tests -> split expects into multiple assertions 
@@ -27,7 +31,7 @@ describe('Route integration', () => {
   describe('/item/:id', () => {
     describe('GET', () => {
       it('Should get the first item ID in the items array', () => {
-        expect.assertions(3);
+        // expect.assertions(3);
         return request(server).get('/item/1').then(res => {
           //expect('Content-Type', /application\/json/)
           // console.log('res.body: ', res.body);
@@ -113,16 +117,27 @@ describe('Route integration', () => {
   //   describe('POST', () => {
   //     it('Should add item to db', () => {
   //       // expect.assertions(1);
-
-  //       return request(server).post('/addItem').then(res => {
-  //        //expect(200)
   //       const mockItem = {
-
+  //         user_id: 2,
+  //         photo: '//www.google.com/url?sa=i&source=imgres&cd=&ved=2ahUKEwiv74iPkYXgAhVowFQKHc80C2cQjRx6BAgBEAU&url=http%3A%2F%2Fwww.spokesman.com%2Fstories%2F2016%2Fnov%2F24%2Fstate-adopts-no-tolerance-policy-for-feral-pigs%2F&psig=AOvVaw2tp_pOdPPPLvzMTmPZJKYy&ust=1548375165015150',
+  //         price: 100,
+  //         item_name: 'Russian Razorback',
+  //         item_details: 'pretty straightforward',
+  //         category: 'outdoor',
+  //         created_at: moment().format(),
   //       }
-  //       mockCreateItem()
-  //         // const item = res.body;
-  //         // expect(items).toBeDefined();
-  //       }).catch(err => console.log(err))
+  //       mockCreateItem(mockItem);
+
+  //       return request(server)
+  //       .get('/search/Russian Razorback')
+  //       .then(res => {
+  //         const name = res.body[0].item_name;
+  //         expect(name).toBeDefined();
+  //         expect(name).toBe('Russian Razorback');
+  //         // obscenely hard-coded
+  //         // expect(items).toHaveLength(12);
+  //       })
+  //       .catch(err => console.log(err))
   //     });
   //   });
   // });

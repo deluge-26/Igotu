@@ -33,7 +33,7 @@ imageController.upload = (req, res, next) => {
       // store returned URL on res.locals
       console.log(`uploaded photo, got back data: ${data.Location}`);
       res.locals.photo = data.Location;
-      // next();
+    
     })
     .then(() => {
       console.log('removing file');
