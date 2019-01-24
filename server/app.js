@@ -1,4 +1,5 @@
 const path = require('path');
+const cors = require('cors');
 const express = require('express');
 const multer = require('multer');
 const bodyParser = require('body-parser');
@@ -16,12 +17,14 @@ const app = express();
 // app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors());
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-TypeError, Accept');
+//   next();
+// });
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-TypeError, Accept');
-  next();
-});
+// app.get('*', (req, res) => res.sendFile('./../index.html'));
 
 app.get('/user/:email', (req, res, err) => {
   // joins user table and item table
@@ -56,6 +59,7 @@ app.delete('/deleteItem', (req, res, err) => {
   // deletes item from database
   res.status(200);
 });
+
 
 app.use(express.static(path.resolve(__dirname, '../build')));
 

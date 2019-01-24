@@ -34,10 +34,10 @@ export const createItem = item => (dispatch) => {
   console.log(formBody);
   fetch('http://localhost:3001/addItem', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Boundary: 'XXXXX',
-    },
+    // headers: {
+    //   'Content-Type': 'multipart/form-data',
+    //   boundary: 'XXXXX',
+    // },
     body: formBody,
   }).then(response => response.json())
     .then((data) => {
