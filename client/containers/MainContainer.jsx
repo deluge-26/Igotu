@@ -77,6 +77,14 @@ class MainContainer extends Component {
               exact path='/'
               render= {(props) => <Cards {...props} items={items} fetchFlag={fetching} loading={this.props} />}
               />
+              <Route
+              path='/category'
+              render= {(props) => <Cards {...props} items={items} fetchFlag={fetching} loading={this.props} />}
+              />
+              <Route
+              path='/search'
+              render= {(props) => <Cards {...props} items={items} fetchFlag={fetching} loading={this.props} />}
+              />
             <Route
               path='/add'
               component={ItemForm}

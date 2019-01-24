@@ -1,4 +1,5 @@
 import React from 'react';
+import { Switch, Route, withRouter, Link, NavLink } from 'react-router-dom';
 /* eslint-disable arrow-parens, */
 const Search = props => {
   function handleChange(e) {
@@ -18,7 +19,9 @@ const Search = props => {
         }}
         onChange={handleChange}
       >
+      <NavLink to='/search'>
         <input type="search" name="searchbox" size="35" />
+      </NavLink>
       </form>
     </div>
   );
