@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable react/self-closing-comp */
+/* eslint-disable */
 import React from 'react';
 import Search from '../components/SearchBox.jsx';
 import SubNavigation from './SubNavContainer.jsx'
@@ -12,9 +13,9 @@ import { Switch, Route, withRouter, Link, NavLink } from 'react-router-dom';
 const Navigation = props => (
   <div id="nav-bar" className="header header-fixed unselectable header-animated">
     <div className="header-brand">
-      <div className="nav_item no-hover">
+      <div className="nav-item no-hover">
         <a href="/">
-          <h6 className="title">igotu</h6>
+          <h6 className="title">eyeGOTchew</h6>
         </a>
       </div>
     </div>
@@ -30,8 +31,8 @@ const Navigation = props => (
         </div>
       </div>
       <div className="nav-right">
+        <a><NavLink className="nav-item no-hover" to='/add'>Add an Item</NavLink></a>
         <div className="nav-item has-sub toggle-hover" id="dropdown">
-          <a><NavLink to='/add'>Add an Item</NavLink></a>
           <a className="nav-dropdown-link">Categories</a>
           <ul className="dropdown-menu dropdown-animated" role="menu">
             <li role="menu-item">
