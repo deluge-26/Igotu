@@ -1,3 +1,4 @@
+/* eslint-disable */
 // import itemController from '../server/controllers/items-controller';
 const request = require('supertest');
 const server = 'http://localhost:3001';
